@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password:
+
+development:
+  <<: *default
+  database: insultario_development
+
+test:
+  <<: *default
+  database: insultario_test
+
+production:
+  <<: *default
+  host: db
+  database: insultario
+  password: root
