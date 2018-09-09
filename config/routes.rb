@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :insult
+    resources :insults
   end
 end
