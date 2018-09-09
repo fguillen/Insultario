@@ -1,5 +1,6 @@
 class Insult < ApplicationRecord
   validates_presence_of :text
+  validates_uniqueness_of :text
 
   def self.random
     Insult.find(Insult.pluck(:id).sample)

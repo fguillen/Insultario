@@ -22,7 +22,10 @@ class Script
     url = "#{app_host_url}/admin/insults"
     response = HTTParty.post(url, options)
 
-    if response.code != /20./
+    puts "XXX: response.body: #{response.body}"
+    puts "XXX: response.code: #{response.code}"
+
+    if response.code.to_s =~ /20./
       puts "Sending correct!"
     else
       puts "Sending ERROR!"
