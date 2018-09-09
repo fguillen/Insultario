@@ -7,6 +7,7 @@ gem 'rails', '~> 5.2.0'
 gem 'mysql2'
 gem 'puma', '~> 3.11'
 gem 'httparty'
+gem 'rack-cors'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
