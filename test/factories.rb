@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :insult do
-    text { "This is the insult" }
+    sequence(:text) { |n| "This is the insult ##{n}" }
   end
 end

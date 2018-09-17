@@ -16,11 +16,15 @@ class InsultTest < ActiveSupport::TestCase
   end
 
   def test_initialize_attributes
+    insult_pre = FactoryBot.create(:insult, :order => 100)
+
     insult = FactoryBot.build(:insult)
     assert_nil(insult.uuid)
+    assert_nil(insult.order)
 
     insult.save!
     assert_not_nil(insult.uuid)
+    assert_equal(101, insult.order)
   end
 end
 
