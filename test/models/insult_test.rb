@@ -26,5 +26,31 @@ class InsultTest < ActiveSupport::TestCase
     assert_not_nil(insult.uuid)
     assert_equal(101, insult.order)
   end
+
+  def test_next
+    insult_1 = FactoryBot.create(:insult, :order => 100)
+    insult_2 = FactoryBot.create(:insult, :order => 101)
+    insult_3 = FactoryBot.create(:insult, :order => 110)
+
+    assert_equal(insult_2, insult_1.next)
+    assert_equal(insult_3, insult_2.next)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      insult_3.next
+    end
+  end
+
+  def test_previouse
+    insult_1 = FactoryBot.create(:insult, :order => 100)
+    insult_2 = FactoryBot.create(:insult, :order => 101)
+    insult_3 = FactoryBot.create(:insult, :order => 110)
+
+    assert_equal(insult_2, insult_3.previous)
+    assert_equal(insult_1, insult_2.previous)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      insult_1.previous
+    end
+  end
 end
 

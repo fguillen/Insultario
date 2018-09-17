@@ -16,9 +16,17 @@ class Insult < ApplicationRecord
 
   def to_hash
     {
-      :id => id,
+      :uuid => uuid,
       :text => text
     }
+  end
+
+  def next
+    Insult.where("`order` > ?", self.order).by_order.first!
+  end
+
+  def previous
+    Insult.where("`order` < ?", self.order).by_order.last!
   end
 
   private
