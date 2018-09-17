@@ -10,4 +10,14 @@ class InsultsControllerTest < ActionDispatch::IntegrationTest
     assert_equal( "application/json", response.content_type )
     assert_equal( "THIS IS THE INSULT", JSON.parse(response.body)["text"] )
   end
+
+  def test_show
+    insult = FactoryBot.create(:insult, :text => "THIS IS THE INSULT", :uuid => "UUID")
+
+    get "/front/insults/UUID"
+
+    assert_response :success
+    assert_equal( "application/json", response.content_type )
+    assert_equal( "THIS IS THE INSULT", JSON.parse(response.body)["text"] )
+  end
 end
