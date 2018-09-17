@@ -14,5 +14,13 @@ class InsultTest < ActiveSupport::TestCase
 
     assert_equal([insult_1, insult_2], result)
   end
+
+  def test_initialize_attributes
+    insult = FactoryBot.build(:insult)
+    assert_nil(insult.uuid)
+
+    insult.save!
+    assert_not_nil(insult.uuid)
+  end
 end
 
