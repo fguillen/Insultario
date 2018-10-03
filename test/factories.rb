@@ -5,4 +5,9 @@ FactoryBot.define do
 
   factory :user do
   end
+
+  factory :insult_card do
+    insult
+    user
+  end
 end

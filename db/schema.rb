@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_03_143501) do
+ActiveRecord::Schema.define(version: 2018_10_03_144100) do
+
+  create_table "insult_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "insult_id", null: false
+    t.datetime "readed_at"
+    t.datetime "loved_at"
+    t.index ["insult_id"], name: "index_insult_cards_on_insult_id"
+    t.index ["user_id", "insult_id"], name: "index_insult_cards_on_user_id_and_insult_id", unique: true
+    t.index ["user_id"], name: "index_insult_cards_on_user_id"
+  end
 
   create_table "insults", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text"
@@ -26,4 +36,6 @@ ActiveRecord::Schema.define(version: 2018_10_03_143501) do
     t.text "uuid", null: false
   end
 
+  add_foreign_key "insult_cards", "insults"
+  add_foreign_key "insult_cards", "users"
 end

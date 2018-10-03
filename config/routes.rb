@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   namespace :front do
-    resources :insults, :only => [:show] do
-      get 'random', :on => :collection
-      get 'next', :on => :member
-      get 'previous', :on => :member
+    resources :users, :only => [:create] do
+      resources :insults, :only => [:index, :show] do
+        get 'random', :on => :collection
+        put 'mark_as_readed', :on => :member
+        put 'mark_as_loved', :on => :member
+        put 'mark_as_unloved', :on => :member
+      end
     end
-
-    resources :users, :only => [:create]
   end
 
   namespace :admin do
