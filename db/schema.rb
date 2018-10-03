@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_17_190447) do
+ActiveRecord::Schema.define(version: 2018_10_03_143501) do
 
   create_table "insults", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 2018_09_17_190447) do
     t.integer "order"
     t.index ["order"], name: "index_insults_on_order", unique: true
     t.index ["uuid"], name: "index_insults_on_uuid", unique: true
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "uuid", null: false
   end
 
 end

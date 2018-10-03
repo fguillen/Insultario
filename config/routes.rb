@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get 'next', :on => :member
       get 'previous', :on => :member
     end
+
+    resources :users, :only => [:create]
   end
 
   namespace :admin do
