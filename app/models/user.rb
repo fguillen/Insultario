@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :uuid
 
   before_validation :initialize_attributes, :on => :create
+  after_create :initilize_insult_cards
 
   def to_hash
     {
@@ -32,6 +33,10 @@ class User < ApplicationRecord
 
   def initialize_attributes
     self.uuid ||= SecureRandom.hex(8)
+  end
+
+  def initilize_insult_cards
+    load_more_insults(5)
   end
 
   def self.random_amount_between_limits
